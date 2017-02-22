@@ -81,5 +81,30 @@ namespace asp_mvc_2.Controllers
             return Json(new { success = true });
         }
 
+        [Authorize]
+        public ActionResult EditProfile()
+        {
+            string loginName = User.Identity.Name;
+            UserManager UM = new UserManager();
+            UserProfileView UPV = UM.GetUserProfile(UM.GetUserID(loginName));
+            return View(UPV);
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult EditProfile(UserProfileView profile)
+        {
+            if (ModelState.IsValid)
+            {
+                UserManager UM = new UserManager();
+                UM.UpdateUserAccount(profile);
+
+                ViewBag.Status = "Update Sucessful!";
+            }
+            return View(profile);
+        }
+
+
     }
 }

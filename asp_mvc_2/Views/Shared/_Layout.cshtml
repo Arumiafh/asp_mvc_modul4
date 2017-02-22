@@ -8,6 +8,7 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>   
     <link href="~/Content/themes/base/all.css" rel="stylesheet" />
 </head>
@@ -23,11 +24,23 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="dropdownCommonMenu" data-toggle="dropdown">Dropdown</a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownCommonMenu">
+                            <li role="menuitem" class="navbar-header">Header 1</li>
+                            <li role="menuitem">@Html.ActionLink("Item 1", "Index", "Home")</li>
+                            <li role="menuitem" class="disabled">@Html.ActionLink("Item 2", "Index", "Home")</li>
+                            <li role="menuitem" class="divider"></li>
+                            <li role="menuitem" class="navbar-header">Header 2</li>
+                            <li role="menuitem">@Html.ActionLink("Item 3", "Index", "Home")</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
-
+    </div> 
     <div class="container body-content">
         @RenderBody()
         <hr />
